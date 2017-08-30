@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:50px">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection"content="telephone=no, email=no" />
+    <link rel="stylesheet" type="text/css" href="../css/style1.css"/>
+    <script src="../../Js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/Js/urlObj.js"></script>
+    <script type="text/javascript" src='/Js/webupload/webuploader.min.js'></script>
+    <script src="js/trailApply.js"></script>
+    <script type="text/javascript">
+        //根据屏幕大小改变根元素字体大小
+        (function(doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function() {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    if (clientWidth >= 750) {
+                        docEl.style.fontSize = '100px';
+                    } else {
+                        docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                    }
+                };
+
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);
+    </script>
+    <style>
+
+        .showPrev{
+            display: block;
+            position: relative;
+            left: 0;
+            top: 0;
+            width: 4rem;
+            height: 2rem;
+        }
+        .showImg i{
+            display: block;
+            width: 0.4rem;
+            height: .5rem;
+            background: url(images/del.png) no-repeat ;
+            /*-.5rem -2.2rem*/
+            position: relative;
+            right: -5.8rem;
+            top: -2rem;
+        }
+        .upload{
+            height: .8rem;
+            width: 4.8rem;
+            position: relative;
+            left: 1.8rem;
+            top: 0px;
+        }
+        .upload input{
+            opacity: 0;
+        }
+        .upload div{
+            height: 100%;
+        }
+        .webuploader-pick+div{
+            position: absolute;
+            top: 0;
+            left: -1.55rem;
+            width: 3rem;
+            height: 39px;
+            overflow: hidden;
+            bottom: auto;
+            right: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <h2>产品信息</h2>
+    <div class="content">
+        <ul>
+            <li class="ins_a">申请类型：</li>
+            <li><label><input class="applyTrail" name="selectType" type="radio" value="" checked>申请试用</label></li>
+            <li><label><input class="consultation" name="selectType" type="radio" value="">购买咨询</label></li>
+            <div class="clear"></div>
+        </ul>
+        <ul>
+            <li class="ins_a">模块选择：</li>
+            <li>
+                <div class="answer">
+                    <span>产销分析</span>
+                    <span>保有量</span>
+                    <span>库存追踪</span>
+                    <span>区域表现</span>
+                    <span>价格监测</span>
+                    <span>产品库</span>
+                    <span>经销网络</span>
+                    <span>车主特征</span>
+                    <div class="clear"></div>
+                </div>
+            </li>
+            <div class="clear"></div>
+        </ul>
+    </div>
+
+    <h2>基本信息</h2>
+    <div class="content">
+        <ul>
+            <li class="ins_a">申请人姓名：</li>
+            <li><input placeholder="" value="" class="applyName"></li>
+            <div class="clear"></div>
+        </ul>
+        <ul>
+            <li class="ins_a">联系电话：</li>
+            <li><input placeholder="" value="" class="telephone"></li>
+            <div class="clear"></div>
+        </ul>
+        <ul>
+            <li class="ins_a">输入验证码：</li>
+            <li><input placeholder="" value="" id="identCode" style="width:2.5rem;"></li>
+            <li class="but_code identCode" onclick="settime(this)">发送验证码</li>
+            <div class="clear"></div>
+        </ul>
+        <ul>
+            <li class="ins_a">电子邮箱：</li>
+            <li><input placeholder="" id="emailAdd" value=""></li>
+            <div class="clear"></div>
+        </ul>
+        <ul>
+            <li class="ins_a">公司名称：</li>
+            <li><input placeholder="" id="componeyName" value=""></li>
+            <div class="clear"></div>
+        </ul>
+        <ul>
+            <li class="ins_a">职务：</li>
+            <li><input placeholder="" class="position" value=""></li>
+            <div class="clear"></div>
+        </ul>
+        <ul>
+            <li class="ins_a">名片上传：</li>
+            <li style="position:relative" class="camera-area">
+                <input placeholder=""  value="" class="choice uploadFile" readonly /><span class="choice-i "><img src="../IndexPages/images/add.png">上传名片</span>
+
+            </li>
+            <div class="upload"></div>
+            <div class="showImg" style="display: none;" ><img src="" alt="" class="showPrev"><i class="delFile"></i></div>
+            <!--<div id="uploader" class="wu-example" style="display: none;">
+                &lt;!&ndash;用来存放文件信息&ndash;&gt;
+                <div id="thelist" class="uploader-list"></div>
+            </div>-->
+            <div class="clear"></div>
+        </ul>
+    </div>
+</div>
+
+
+<footer><a href="#" id="submitApply">提交</a></footer>
+
+</body>
+</html>

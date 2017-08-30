@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:50px">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection"content="telephone=no, email=no" />
+    <link rel="stylesheet" type="text/css" href="../css/style1.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/swiper-3.4.2.min.css"/>
+    <script src="../../../Js/jquery-1.11.3.min.js"></script>
+    <script src="../../js/swiper-3.4.2.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/transform.js"></script>
+    <script src="../../../Js/urlObj.js"></script>
+    <script src="../../../Js/ejs.min.js"></script>
+    <script src="../js/transform.js"></script>
+    <script src="../js/indexMark.js"></script>
+    <script type="text/javascript">
+        //根据屏幕大小改变根元素字体大小
+        /*(function(doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function() {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    if (clientWidth >= 750) {
+                        docEl.style.fontSize = '100px';
+                    } else {
+                        docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                    }
+                };
+
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            doc.addEventListener('DOMContentLoaded', recalc, false);
+        })(document, window);*/
+    </script>
+
+</head>
+<body>
+<!--nav-box-->
+
+    <section class="wrap">
+        <!--<div style="width: 100%;height: 600px;background-color:rgba(0,0,0,0.4);"></div>-->
+        <section>
+            <!--头部-->
+            <div class="nav-box">
+                <div class="nav-bar">
+                    <ul>
+                        <li class="selectDate"><span class="selectTime"><i><img src="../images/arrow.png" alt=""></i></span></li>
+                        <li class="selectMarkType"><span class="last">整体市场排行<i><img src="../images/arrow.png" alt=""></i></span></li>
+                    </ul>
+                </div>
+                <!--drop-down-->
+                <div class="drop-down dateList" style="display: none">
+
+                </div>
+                <div class="drop-down allMarkRank" style="display: none">
+                    <ul>
+                        <li>整体市场排行</li>
+                        <li>细分市场车型排行</li>
+                        <li>价格段排行</li>
+                    </ul>
+                </div>
+            </div>
+            <!--可拖拽的导航-->
+            <nav class="nav_wrap">
+                <ul class="nav_list">
+                    <li><a href="javascript:;" class="choose-h"><span>厂商排行榜</span><i></i></a></li>
+                    <li><a href="javascript:;" class="choose"><span>品牌排行榜</span><i></i></a></li>
+                    <li><a href="javascript:;" class="choose"><span>车型排行榜</span><i></i></a></li>
+                </ul>
+            </nav>
+        </section>
+        <div class="liwoso_crumbs_nav market" style="display: none">
+            <a class="choose-h" href="#"><span>轿车</span><i>已选中</i></a>
+            <a class="choose" href="#"><span>SUV</span><i>未选中</i></a>
+            <a class="choose" href="#"><span>MPV</span><i>未选中</i></a>
+            <a class="choose" href="#"><span>豪华</span><i>未选中</i></a>
+            <a class="choose" href="#"><span>自主</span><i>未选中</i></a>
+        </div>
+
+
+        <!------table------>
+        <script type="text/template" id="searchTem">
+            <tr>
+                <th width="18%">排名</th>
+                <%if(carType=='整体市场排行'){%>
+                <th width="34%">厂商名称</th>
+                <%}else{%>
+                <th width="34%">车型</th>
+                <%}%>
+                <th width="30%">指数</th>
+                <th width="18%" style="text-align:center">涨幅</th>
+            </tr>
+            <%for(var i=0;i< list.length;i++){%>
+            <tr>
+                <%if(i<9){%>
+                <td>0<%=i+1%></td>
+                <%}else{%>
+                <td><%=i+1%></td>
+                <%}%>
+                <td><%=list[i].showName%></td>
+                <td>
+                    <div class="bar-box">
+                  <div class="progressBar">
+                        <div class="progressBarColor" style="width:<%=list[i].showIndex/list[0].showIndex*100+'%'%>;"></div>
+                    </div>
+                    </div>
+                </td>
+                <td style="text-align:center">
+                    <div class="bar-arrow-t">
+                        <%if(list[i].rankChange==1){%>
+                        <img src="../images/arrow_top.png">
+                        <%}else if(list[i].rankChange==-1){%>
+                        <img src="../images/arrow_bottom.png">
+                        <%}else{%>
+                        <img src="../images/arrow_right.png">
+                        <%}%>
+                    </div>
+                </td>
+            </tr>
+            <%}%>
+        </script>
+        <section class="tab_wrap">
+        <div class="tab_loading" style="display: none;"><img src="../images/loading.gif" alt=""></div>
+        <div class="table">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ddd" class="searchTable">
+                <tr>
+                    <th width="18%">排名</th>
+                    <th width="34%">厂商名称</th>
+                    <th width="30%">指数</th>
+                    <th width="18%" style="text-align:center">涨幅</th>
+                </tr>
+                <tr>
+                    <td>01</td>
+                    <td>上汽通用五菱</td>
+                    <td>
+                        <div class="bar-box"><img src="../images/pic02.png"></div>
+                    </td>
+                    <td style="text-align:center">
+                        <div class="bar-arrow-t"><img src="../images/arrow_top.png"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        </section>
+
+        <!--footer-->
+        <footer>
+            <a href="javascript:void(0)" class="gzMark rank"><img src="../images/icon-04-h.png" alt=""/><span class="hover" data-type="gz">关注指数</span></a>
+            <a href="javascript:void(0)" class="ygMark rank"><img src="../images/icon-05.png" alt=""/><span data-type="yg">预购指数</span></a>
+            <a href="javascript:void(0)" class="svMark rank"><img src="../images/icon-06.png" alt=""/><span data-type="sv">销量指数</span></a>
+        </footer>
+    </section>
+</body>
+</html>

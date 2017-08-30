@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:50px">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <title>研究报告</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" href="css/dropload.css">
+    <script type="text/javascript" src="../../Js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../Js/ejs.min.js"></script>
+    <script type="text/javascript" src="js/researchReport.js"></script>
+    <script type="text/javascript" src="js/transform.js"></script>
+    <script type="text/javascript" src="../../Js/urlObj.js"></script>
+    <script type="text/javascript" src="js/dropload.min.js"></script>
+</head>
+<body>
+    <section class="wrap">
+        <section class="nav">
+            <!--可拖拽的导航-->
+            <nav id="nav_wrap">
+                <ul id="nav_list">
+                    <li><a href="javascript:;" class="current" data-type="">全部报告</a></li>
+                    <li><a href="javascript:;" data-type="Trends">趋势预测</a></li>
+                    <li><a href="javascript:;" data-type="Marketing">市场概述</a></li>
+                    <li><a href="javascript:;" data-type="Region">区域洞察</a></li>
+                    <li><a href="javascript:;" data-type="Purchase">消费特征</a></li>
+                    <li><a href="javascript:;" data-type="Segmenting">细分市场</a></li>
+                </ul>
+            </nav>
+        </section>
+        <div class="seat">&nbsp;</div>
+        <!-- content -->
+        <section  class="tab_wrap">
+            <div class="tab_loading" style="display: none;"><img src="images/loading.gif" alt=""></div>
+            <div class="content">
+                <div class="lists">
+                </div>
+            </div>
+            <script type="text/template" id="articleTem">
+                <%for(var i=0;i< result.length;i++){%>
+                <article>
+                    <a href="<%=result[i].AttachmentUrl%>">
+                        <div class="article-img-pane">
+                            <img src="<%= result[i].ImageUrl%>">
+                        </div>
+                        <h2><%= result[i].Title%></h2>
+                    </a>
+                    <div class="a-meta"><%= result[i].PublishTime%></div>
+                </article>
+                <%}%>
+            </script>
+        </section>
+</section>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

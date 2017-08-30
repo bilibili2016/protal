@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:50px">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <title>数据解读</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" href="css/dropload.css">
+    <script type="text/javascript" src="../../Js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="../../Js/ejs.min.js"></script>
+    <script type="text/javascript" src="../../Js/urlObj.js"></script>
+    <script type="text/javascript" src="js/dropload.min.js"></script>
+    <script type="text/javascript" src="js/dataDeconding.js"></script>
+</head>
+<body>
+
+<!-- content -->
+<div class="content">
+    <div class="lists"></div>
+</div>
+<script type="text/template" id="articleTem">
+    <%for(var i=0;i< result.length;i++){%>
+    <article>
+        <a href="<%= result[i].MobileUrl%>">
+            <div class="article-img-pane">
+                <img src="<%= result[i].ImageUrl%>">
+            </div>
+            <h2><%= result[i].Title%></h2>
+        </a>
+        <div class="a-meta"><%= result[i].PublishTime%></div>
+    </article>
+    <%}%>
+</script>
+
+
+
+</body>
+</html>

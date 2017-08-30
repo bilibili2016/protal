@@ -1,0 +1,78 @@
+<title>指数排行</title>
+
+<script type="text/javascript" src="../js/indexNum.js"></script>
+
+<section>
+    <!--头部-->
+    <div class="nav-box">
+        <div class="nav-bar">
+            <ul>
+                <li class="chooseTime"><span><em></em><i><img src="../images/arrow.png" alt=""></i></span></li>
+                <li class="level" data-id="1"><span class="last"><em>细分市场车型排行</em><i><img src="../images/arrow.png" alt=""></i></span></li>
+            </ul>
+        </div>
+        <!--drop-down-->
+        <div class="drop-down time" style="display: none">
+            <ul></ul>
+        </div>
+        <div class="drop-down classfy" style="display: none">
+            <ul>
+                <li class="hover" data-id="1">细分市场车型排行</li>
+                <li data-id="2">城市级别排行</li>
+            </ul>
+        </div>
+    </div>
+    <!--可拖拽的导航-->
+    <section class="dragNav">
+        <nav class="nav_wrap">
+            <ul class="nav_list"></ul>
+        </nav>
+    </section>
+
+</section>
+
+<!------table------>
+<section class="tab_wrap">
+    <div class="tab_loading" style="display: none;"><img src="../images/loading.gif" alt=""></div>
+    <div class="table">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ddd"  id="marketCar"></table>
+        <script type="text/template" id="marketCarTem">
+            <tr>
+                <th width="18%">排名</th>
+                <th width="34%">厂商名称</th>
+                <th width="30%">指数</th>
+                <th width="18%" style="text-align:center">涨幅</th>
+            </tr>
+            <% for(var i = 0 ;i< list.length;i++){ %>
+            <% var src,width,height,className;%>
+            <% if(list[i].rankChange == -1){
+            src = '../images/arrow_bottom.png';
+            width = 0.56;height=0.62;
+            className = 'bar-arrow-t';
+            }else if(list[i].rankChange == 0){
+            src = '../images/arrow_right.png';
+            width = 0.60;height=0.52;
+            className = 'bar-arrow-r';
+            }else if(list[i].rankChange == 1){
+            src = '../images/arrow_top.png';
+            width = 0.56;height = 0.62;
+            className = 'bar-arrow-t';
+            }%>
+            <% var index = i+1%>
+            <%if(index <10 && index >0){
+            index = '0'+index;
+            }%>
+            <tr>
+                <td><%= index%></td>
+                <td><%= list[i].showName%></td>
+                <td>
+                    <div class="progressBar">
+                        <div class="progressBarColor"></div>
+                    </div>
+                </td>
+                <td style="text-align:center"><div class="<%=className%>"><img src="<%= src %>"></div></td>
+            </tr>
+            <% } %>
+        </script>
+    </div>
+</section>
